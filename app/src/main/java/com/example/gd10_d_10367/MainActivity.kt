@@ -1,10 +1,10 @@
 package com.example.gd10_d_10367
-
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.startActivity
 import com.example.gd10_d_10367.databinding.ActivityMainBinding
 import com.example.gd10_d_10367.fragment.DataMahasiswaFragment
 
@@ -15,7 +15,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         showDataFragment()
-        binding.txtCari.setOnKeyListener(View.OnKeyListener{ _, keyCode, event->
+        binding.txtCari.setOnKeyListener(View.OnKeyListener{ _,
+                                                             keyCode, event->
             if(keyCode == KeyEvent.KEYCODE_ENTER && event.action
                 == KeyEvent.ACTION_UP)
             {
@@ -27,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         binding.btnAdd.setOnClickListener{
             startActivity(
                 Intent(this,
-                FormAddMahasiswaActivity::class.java)
+                    FormAddMahasiswaActivity::class.java)
             )
         }
     }

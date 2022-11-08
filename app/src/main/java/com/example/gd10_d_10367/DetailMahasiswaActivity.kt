@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.gd10_d_10367.databinding.ActivityDetailMahasiswaBinding
 import retrofit2.Call
 import retrofit2.Callback
-
 import retrofit2.Response
 
 class DetailMahasiswaActivity : AppCompatActivity() {
@@ -17,7 +16,8 @@ class DetailMahasiswaActivity : AppCompatActivity() {
     private val listMahasiswa = ArrayList<MahasiswaData>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityDetailMahasiswaBinding.inflate(layoutInflater)
+        binding =
+            ActivityDetailMahasiswaBinding.inflate(layoutInflater)
         setContentView(binding.root)
         b = intent.extras
         val nim = b?.getString("nim")
@@ -26,9 +26,11 @@ class DetailMahasiswaActivity : AppCompatActivity() {
             nim?.let { it1 -> deleteData(it1) }
         }
         binding.btnEdit.setOnClickListener {
-            startActivity(Intent(this, FormEditMahasiswaActivity::class.java).apply {
-                putExtra("nim",nim)
-            })
+            startActivity(
+                Intent(this,
+                    FormEditMahasiswaActivity::class.java).apply {
+                    putExtra("nim",nim)
+                })
         }
     }
     fun getDataDetail(nim:String){
@@ -50,7 +52,8 @@ class DetailMahasiswaActivity : AppCompatActivity() {
                     }
                 }
             }
-            override fun onFailure(call: Call<ResponseDataMahasiswa>, t: Throwable) {
+            override fun onFailure(call:
+                                   Call<ResponseDataMahasiswa>, t: Throwable) {
             }
         })
     }
@@ -59,18 +62,22 @@ class DetailMahasiswaActivity : AppCompatActivity() {
         this.recreate()
     }
     fun deleteData(nim:String){
-        val builder = AlertDialog.Builder(this@DetailMahasiswaActivity)
+        val builder =
+            AlertDialog.Builder(this@DetailMahasiswaActivity)
         builder.setMessage("Anda Yakin mau hapus?? Saya ngga yakin loh.")
             .setCancelable(false)
-            .setPositiveButton("Ya, Hapus Aja!"){dialog, id-> doDeleteData(nim)
+            .setPositiveButton("Ya, Hapus Aja!"){dialog, id->
+                doDeleteData(nim)
             }
-            .setNegativeButton("Tidak, Masih sayang dataku"){dialog,id -> dialog.dismiss()
+            .setNegativeButton("Tidak, Masih sayang dataku"){dialog,id ->
+                dialog.dismiss()
             }
         val alert = builder.create()
         alert.show()
     }
     private fun doDeleteData(nim:String) {
-        RClient.instances.deleteData(nim).enqueue(object : Callback<ResponseCreate>{
+        RClient.instances.deleteData(nim).enqueue(object :
+            Callback<ResponseCreate>{
             override fun onResponse(
                 call: Call<ResponseCreate>,
                 response: Response<ResponseCreate>
@@ -80,7 +87,8 @@ class DetailMahasiswaActivity : AppCompatActivity() {
                     finish()
                 }
             }
-            override fun onFailure(call: Call<ResponseCreate>, t: Throwable) {
+            override fun onFailure(call: Call<ResponseCreate>, t:
+            Throwable) {
             }
         })
     }
